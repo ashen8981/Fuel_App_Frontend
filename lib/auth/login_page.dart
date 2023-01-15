@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fuel_app/auth/register_page.dart';
 import 'package:lottie/lottie.dart';
 import '../home_page/station_home_page.dart';
-import '../home_page/user_home_page.dart';
+import '../home_page/_search_home_page.dart';
 import '../widgets/widgets.dart';
 
 
@@ -19,22 +19,15 @@ class _LoginPageState extends State<LoginPage> {
   final formkey = GlobalKey<FormState>();
   String email = "";
   String password = "";
-  bool _isLoading = false;
   String RegNum = "";
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        // image: DecorationImage(
-        //   image: AssetImage('Images/BG.jpeg'),
-        //   fit: BoxFit.cover,
-        // ),
-      ),
       child: Scaffold(
 
-        // backgroundColor: Colors.transparent,
-        body: _isLoading ? const Center(child: CircularProgressIndicator(),) : Form(
+        backgroundColor: Color(0xFFFFF3E0),
+        body:  Form(
           key: formkey,
           child: SingleChildScrollView(
             child: Padding(
@@ -131,8 +124,8 @@ class _LoginPageState extends State<LoginPage> {
   loginUser() async{
     if (formkey.currentState!.validate()){
       setState(() {
-        _isLoading = true;
-        nextScreen(context, UserHomePage());
+
+        nextScreen(context, SearchPage());
       });
     }
   }
@@ -140,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
   loginStaion() async{
     if (formkey.currentState!.validate()){
       setState(() {
-        _isLoading = true;
+
         nextScreen(context, StationHomePage());
       });
     }

@@ -17,45 +17,38 @@ class _StationRegisterScreenState extends State<StationRegisterScreen> {
 final formkey = GlobalKey<FormState>();
 
 String fullName = "";
-String StationName = "";
-String RegNum = "";
-String District="";
-String City="";
+String stationName = "";
+String regNum = "";
+String district="";
+String city="";
 String email = "";
 String password = "";
-bool _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        // image: DecorationImage(
-        //   image: AssetImage('Images/BG.jpeg'),
-        //   fit: BoxFit.cover,
-        // ),
       ),
       child: SafeArea(
         child: Scaffold(
-
-          // backgroundColor: Colors.transparent,
-          body: _isLoading ? Center(child: CircularProgressIndicator(),) : Form(
+          backgroundColor: Color(0xFFFFF3E0),
+          body: Form(
             key: formkey,
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Column(
                   children: <Widget>[
-                    SizedBox(height: 100,),
-                    Lottie.network('https://assets8.lottiefiles.com/packages/lf20_PS7mA8szhY.json',
-                      width: 300,
-                      height: 250,
+                    const SizedBox(height: 50,),
+                    Lottie.network('https://assets3.lottiefiles.com/packages/lf20_zqojwy4n.json',
                       fit: BoxFit.fill,),
-                    SizedBox(height: 50),
+                    const SizedBox(height: 50),
                     const Text('Welcome to the FuelApp',
                       style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xFFFF5722)),),
-                    SizedBox(height: 3,),
+                    const SizedBox(height: 3,),
                     const Text('Get Connect with Us',
                       style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xFFFF5722)),),
-                    SizedBox(height: 35,),
+                    const SizedBox(height: 35,),
 
 
                     TextFormField(
@@ -65,7 +58,7 @@ bool _isLoading = false;
                       ),
                       onChanged: (val){
                         setState(() {
-                          StationName = val;
+                          stationName = val;
                         });
                       },
                       validator: (val){
@@ -84,7 +77,7 @@ bool _isLoading = false;
                       ),
                       onChanged: (val){
                         setState(() {
-                          RegNum = val;
+                          regNum = val;
                         });
                       },
                       validator: (val){
@@ -103,7 +96,7 @@ bool _isLoading = false;
                       ),
                       onChanged: (val){
                         setState(() {
-                          District = val;
+                          district = val;
                         });
                       },
                       validator: (val){
@@ -122,7 +115,7 @@ bool _isLoading = false;
                       ),
                       onChanged: (val){
                         setState(() {
-                          City = val;
+                          city = val;
                         });
                       },
                       validator: (val){
@@ -225,7 +218,6 @@ bool _isLoading = false;
 StationRegister()async{
   if (formkey.currentState!.validate()){
     setState(() {
-      _isLoading = true;
       nextScreen(context, StationHomePage());
     });
   }
