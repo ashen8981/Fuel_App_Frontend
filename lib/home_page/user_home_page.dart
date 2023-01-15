@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../auth/register_page.dart';
+import '../user_pages/user_add_data.dart';
+import '../widgets/widgets.dart';
+
 
 class UserHomePage extends StatefulWidget {
   const UserHomePage({Key? key}) : super(key: key);
@@ -16,7 +20,9 @@ class _UserHomePageState extends State<UserHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('User Home page')
+            Text('User Home page'),
+            ElevatedButton(onPressed:(){ nextScreen(context, UserAddData());},
+                child: Text("next screen"))
           ],
         ),
       ),

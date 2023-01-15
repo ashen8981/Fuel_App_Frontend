@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/widgets.dart';
+
 
 
 class StationHomePage extends StatefulWidget {
@@ -10,6 +12,17 @@ class StationHomePage extends StatefulWidget {
 }
 
 class _StationHomePageState extends State<StationHomePage> {
+  // final formkey = GlobalKey<FormState>();
+
+  String queLength = "";
+  String petrolStock = "";
+  String dieselStock = "";
+
+  final queController = TextEditingController();
+  final petrolController = TextEditingController();
+  final dieselController = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +31,7 @@ class _StationHomePageState extends State<StationHomePage> {
         ),
       ),
       body:Center(
+        // key: formkey,
         child: SingleChildScrollView(
           child: Padding(padding: const EdgeInsets.symmetric(horizontal: 25.0),
           child: Column(
@@ -39,74 +53,143 @@ class _StationHomePageState extends State<StationHomePage> {
                   Row(
                     children:  [
                       RichText(
-                        text: const TextSpan(
-                          text: 'Petrol : ',
-                          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.blue),
+                        text:  TextSpan(
+                          text: 'Diesel : ',
+                          style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.blue),
                           children: <TextSpan>[
-                            TextSpan(text: '100 Liters', style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(text: dieselStock, style: const TextStyle(fontWeight: FontWeight.bold)),
                           ],
                         ),
                       )
                             ],
                   ),
               const SizedBox(height:25),
+              TextFormField(
+                controller: dieselController,
+                decoration: textInputDecoration.copyWith(
+                  labelText: "Diesel storage",
+                  prefixIcon: const Icon(Icons.app_registration_rounded, color: Color(0xFFFF5722),),
+                ),
+                // onChanged: (val){
+                //   setState(() {
+                //     dieselStock = val;
+                //   });
+                // },
+                // validator: (val){
+                //   if(val!.isNotEmpty){
+                //     return null;
+                //   }else{
+                //     return "Diesel storage field can't empty";
+                //   }
+                // },
+              ),
+              const SizedBox(height:25),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     primary: Color(0xFFFF5722)
                 ),
-                onPressed: (){
-
-                },
-                child:const Text('Add petrol data'),
+                onPressed: _diesel,
+                child:const Text('Add Diesel data'),
               ),
               const SizedBox(height:25),
               Row(
                 children:  [
                   RichText(
-                    text: const TextSpan(
-                      text: 'Diesel : ',
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.blue),
+                    text:  TextSpan(
+                      text: 'Petrol : ',
+                      style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.blue),
                       children: <TextSpan>[
-                        TextSpan(text: '100 Liters', style: TextStyle(fontWeight: FontWeight.bold)),
+                        TextSpan(text: petrolStock, style: TextStyle(fontWeight: FontWeight.bold)),
                       ],
                     ),
                   )
                 ],
               ),
               const SizedBox(height:25),
+              TextFormField(
+                controller: petrolController,
+                decoration: textInputDecoration.copyWith(
+                  labelText: "Petrol storage",
+                  prefixIcon: const Icon(Icons.app_registration_rounded, color: Color(0xFFFF5722),),
+                ),
+                // onChanged: (val){
+                //   setState(() {
+                //     petrolStock = val;
+                //   });
+                // },
+                // validator: (val){
+                //   if(val!.isNotEmpty){
+                //     return null;
+                //   }else{
+                //     return "Petrol storage field can't empty";
+                //   }
+                // },
+              ),
+              const SizedBox(height:25),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     primary: Color(0xFFFF5722)
                 ),
-                onPressed: (){
-
-                },
-                child:const Text('Add Diesel data'),
+                onPressed:  _petrol,
+                child:const Text('Add Petrol data'),
               ),
               const SizedBox(height:25),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Text('Enter Que Length',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black87),),
+                children:  [
+                  Text("Que length : $queLength",
+                    style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black87),),
                 ],
               ),
-              SizedBox(height:20),
+              const SizedBox(height:20),
+              TextFormField(
+                controller: queController,
+                decoration: textInputDecoration.copyWith(
+                  labelText: "Enter the que length",
+                  prefixIcon: const Icon(Icons.app_registration_rounded, color: Color(0xFFFF5722),),
+                ),
+                // onChanged: (val){
+                //   setState(() {
+                //     queLength  = val;
+                //   });
+                // },
+                // validator: (val){
+                //   if(val!.isNotEmpty){
+                //     return null;
+                //   }else{
+                //     return "Que length cannot be empty";
+                //   }
+                // },
+              ),
+              const SizedBox(height:20),
               Row(children:[
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      primary: Color(0xFFFF5722)
+                      primary: const Color(0xFFFF5722)
                   ),
-                  onPressed: (){
-
-                  },
+                  onPressed: _setQue,
                   child:const Text('Enter que length'),
                 ),
               ]),
-                ],
+            ],
           ),),
         ),
       ),
     );
+  }
+  void _setQue(){
+    setState(() {
+      queLength=queController.text;
+    });
+  }
+  void _petrol(){
+    setState(() {
+      petrolStock=petrolController.text;
+    });
+  }
+  void _diesel(){
+    setState(() {
+      dieselStock=dieselController.text;
+    });
   }
 }
